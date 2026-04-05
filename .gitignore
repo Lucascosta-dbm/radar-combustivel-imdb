@@ -1,0 +1,28 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+.env
+
+# Logs
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VSCode
+.vscode/
+
+# Sistema Operacional
+.DS_Store
+Thumbs.db
+
+# Dados grandes (ajuste se necessário)
+data/raw/
+data/tmp/
+
+# Cache
+.cache/
