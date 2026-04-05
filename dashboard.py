@@ -19,7 +19,7 @@ r = get_redis()
 # -----------------------------
 # TÍTULO
 # -----------------------------
-st.title("⛽ Radar Combustível — Dashboard Redis")
+st.title("Radar Combustível — Dashboard Redis")
 
 st.caption("""
 Arquitetura:
@@ -34,7 +34,7 @@ REFRESH_SECONDS = 10
 if "last_refresh" not in st.session_state:
     st.session_state.last_refresh = time.time()
 
-st.caption(f"🔄 Atualização automática a cada {REFRESH_SECONDS}s")
+st.caption(f"Atualização automática a cada {REFRESH_SECONDS}s")
 
 now = time.time()
 
@@ -62,14 +62,14 @@ top_variation = r.zrevrange(
 
 max_variation = top_variation[0][1] if top_variation else 0
 
-col1.metric("⛽ Postos Monitorados", total_postos)
-col2.metric("🔎 Total de Buscas", int(total_buscas))
-col3.metric("📈 Maior Variação", f"{max_variation:.2f}%")
+col1.metric("Postos Monitorados", total_postos)
+col2.metric("Total de Buscas", int(total_buscas))
+col3.metric("Maior Variação", f"{max_variation:.2f}%")
 
 # -----------------------------
 # MAIS BARATOS
 # -----------------------------
-st.header("💰 Postos com menor preço (Gasolina Comum)")
+st.header("Postos com menor preço (Gasolina Comum)")
 
 cheap = r.zrange(
     "ranking:GASOLINA_COMUM:price",
@@ -87,7 +87,7 @@ else:
 # -----------------------------
 # TRENDING
 # -----------------------------
-st.header("🔥 Combustíveis em alta (buscas)")
+st.header("Combustíveis em alta (buscas)")
 
 trending = r.zrevrange(
     "ranking:search:fuel",
@@ -105,7 +105,7 @@ else:
 # -----------------------------
 # VARIAÇÃO DE PREÇO (Analytics)
 # -----------------------------
-st.header("📈 Maior variação recente de preço")
+st.header("Maior variação recente de preço")
 
 try:
     variations = r.zrevrange(
@@ -129,12 +129,12 @@ except Exception as e:
 # -----------------------------
 st.divider()
 
-st.success("✅ Dados servidos diretamente do Redis (Serving Layer)")
+st.success(" Dados servidos diretamente do Redis (Serving Layer)")
 
 # -----------------------------
 # MAPA DE POSTOS (REDIS GEO)
 # -----------------------------
-st.header("🗺️ Postos próximos (Mapa)")
+st.header("Postos próximos (Mapa)")
 
 try:
     members = r.zrange("stations:geo", 0, -1)

@@ -86,7 +86,7 @@ def run():
     for event in events:
         process_event(event)
 
-    print("✅ Processing finalizado")
+    print("Processing finalizado")
 
 
 if __name__ == "__main__":

@@ -7,7 +7,7 @@ redis = get_redis()
 
 def load_prices_to_redis():
 
-    print("🔥 Carregando eventos_preco → Redis")
+    print("Carregando eventos_preco → Redis")
 
     eventos = mongo.eventos_preco.find({}).sort("data_coleta", 1)
 
@@ -61,7 +61,7 @@ def load_prices_to_redis():
         # atualiza último preço
         last_price[key] = preco
 
-    print("✅ Redis abastecido")
+    print("Redis abastecido")
 
 
 if __name__ == "__main__":

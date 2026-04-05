@@ -5,11 +5,11 @@ from src.services.queries import (
 )
 
 
-print("\n⛽ MAIS BARATO PRÓXIMO")
+print("\n MAIS BARATO PRÓXIMO")
 print(cheapest_fuel_nearby(-23.55, -46.63))
 
-print("\n🔥 TRENDING")
+print("\n TRENDING")
 print(trending_fuels())
 
-print("\n🏆 RANKING GLOBAL")
+print("\n RANKING GLOBAL")
 print(cheapest_overall())

@@ -4,7 +4,7 @@ r = get_redis()
 
 
 # ======================================
-# 1️⃣ Combustível mais barato
+# Combustível mais barato
 # ======================================
 def cheapest_stations(fuel, limit=5):
 
@@ -19,7 +19,7 @@ def cheapest_stations(fuel, limit=5):
 
 
 # ======================================
-# 2️⃣ Combustíveis trending
+# Combustíveis trending
 # ======================================
 def trending_fuels(limit=5):
 

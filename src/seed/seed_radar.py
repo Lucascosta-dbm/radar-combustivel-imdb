@@ -69,7 +69,7 @@ def seed():
 
     events.insert_many(docs)
 
-    print(f"✅ {len(docs)} eventos inseridos!")
+    print(f" {len(docs)} eventos inseridos!")
 
 
 if __name__ == "__main__":

@@ -3,8 +3,8 @@ from src.queries.analytics_queries import (
     trending_fuels
 )
 
-print("\n⛽ MAIS BARATOS")
+print("\nMAIS BARATOS")
 print(cheapest_stations("GASOLINA_COMUM"))
 
-print("\n🔥 TRENDING")
+print("\nTRENDING")
 print(trending_fuels())

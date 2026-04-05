@@ -139,11 +139,27 @@ dashboard.py
 
 Imagens do funcionamento encontram-se em:
 
-```
-/docs/prints
-```
+`/docs/prints`
 
----
+### Dashboard
+
+![Dashboard](docs/prints/dashboard-completo.png)
+
+### KPIs em tempo real
+
+![KPIs](docs/prints/kpis.png)
+
+### Mapa de Postos (Redis GEO)
+
+![Mapa](docs/prints/mapa-postos.png)
+
+### Pipeline MongoDB → Redis
+
+![Pipeline](docs/prints/pipeline-loader.png)
+
+### Consulta Redis
+
+![Redis](docs/prints/redis-query.png)
 
 ## Integrantes
 
