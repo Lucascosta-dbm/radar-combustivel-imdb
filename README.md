@@ -191,10 +191,10 @@ Imagens do funcionamento encontram-se em:
 
 ## Integrantes
 
-Danielle dos Santos Romano
-Lucas Pereira Costa
-Michael Pablo Gomes da Silva
-Tatiana Germuzesque dos Santos Pleger
+- Danielle dos Santos Romano
+- Lucas Pereira Costa
+- Michael Pablo Gomes da Silva
+- Tatiana Germuzesque dos Santos Pleger
 
 ## Licença
 
