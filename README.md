@@ -31,12 +31,29 @@ Streamlit Dashboard
 
 ---
 
+### Camadas da Arquitetura
+
+- **Ingestão — MongoDB**  
+  Armazena eventos de atualização de preços.
+
+- **Processamento — Python Loader**  
+  Lê eventos e transforma dados para estruturas otimizadas.
+
+- **Serving Layer — Redis**  
+  Mantém dados em memória para consultas rápidas.
+
+- **Visualização — Streamlit**  
+  Dashboard analítico interativo.
+
+---
+
+
 ## Tecnologias Utilizadas
 
 * Python 3.10+
 * MongoDB
 * Redis
-* Docker
+* Docker & Docker Compose
 * Streamlit
 * Pandas
 
@@ -44,14 +61,16 @@ Streamlit Dashboard
 
 ## Estruturas Redis Utilizadas
 
-| Estrutura  | Uso                           |
-| ---------- | ----------------------------- |
-| Sorted Set | Ranking de menores preços     |
-| Sorted Set | Combustíveis mais buscados    |
-| Sorted Set | Variação percentual de preços |
-| GEO        | Localização de postos         |
+| Estrutura  |           Key                  |         Finalidade        |
+|------------|--------------------------------|---------------------------|
+| Sorted Set | `ranking:GASOLINA_COMUM:price` | Ranking de menores preços |
+| Sorted Set | `ranking:search:fuel`          | Combustíveis em alta      |
+| Sorted Set | `ranking:price:variation`      | Analytics de variação     |
+| GEO        | `stations:geo`                 | Localização geográfica    |
 
-Motivo: consultas extremamente rápidas (O(log N)) ideais para dashboards.
+**Motivação técnica**
+Redis foi utilizado como camada de *read-optimized serving*, permitindo consultas de baixa latência ideais para dashboards analíticos.
+
 
 ---
 
@@ -83,7 +102,7 @@ pip install -r requirements.txt
 
 ---
 
-### Subir bancos com Docker
+### Subir infraestrutura (MongoDB + Redis)
 
 ```bash
 docker-compose up -d
@@ -91,7 +110,7 @@ docker-compose up -d
 
 ---
 
-### Carregar dados no Redis
+### Executar pipeline MongoDB → Redis
 
 ```bash
 python -m src.imdb.imdb_loader
@@ -117,20 +136,29 @@ http://localhost:8501
 
 * KPIs em tempo real
 * Ranking de postos mais baratos
-* Combustíveis em alta
-* Variação de preços
-* Mapa geográfico de postos
+* Combustíveis em tendência
+* Análise de variação de preços
+* Visualização geográfica (Redis GEO)
+* Atualização automática do dashboard
 
 ---
 
 ## Estrutura do Projeto
 
 ```
-src/
- ├── config/
- ├── imdb/
-app/
-dashboard.py
+radar-combustivel-imdb/
+│
+├── src/
+│   ├── config/
+│   └── imdb/
+│
+├── docs/
+│   └── prints/
+│
+├── dashboard.py
+├── docker-compose.yml
+├── requirements.txt
+└── README.md
 ```
 
 ---
@@ -163,9 +191,10 @@ Imagens do funcionamento encontram-se em:
 
 ## Integrantes
 
-(Adicionar nomes do grupo)
-
----
+Danielle dos Santos Romano
+Lucas Pereira Costa
+Michael Pablo Gomes da Silva
+Tatiana Germuzesque dos Santos Pleger
 
 ## Licença
 
