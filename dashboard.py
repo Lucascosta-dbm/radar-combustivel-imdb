@@ -16,6 +16,12 @@ def get_redis():
 
 r = get_redis()
 
+
+def station_name(station_id: str) -> str:
+    """Resolve station_id to a human-readable name via Redis hash station:{id}:info."""
+    name = r.hget(f"station:{station_id}:info", "name")
+    return name if name else station_id
+
 # -----------------------------
 # TÍTULO
 # -----------------------------
@@ -80,7 +86,7 @@ cheap = r.zrange(
 
 if cheap:
     for station, price in cheap:
-        st.write(f"Posto: `{station}` — R$ {price:.3f}")
+        st.write(f"Posto: **{station_name(station)}** — R$ {price:.3f}")
 else:
     st.warning("Nenhum dado encontrado.")
 
@@ -117,7 +123,7 @@ try:
 
     if variations:
         for station, score in variations:
-            st.write(f"Posto `{station}` — variação {score:.2f}%")
+            st.write(f"Posto **{station_name(station)}** — variação {score:.2f}%")
     else:
         st.info("Sem dados de variação ainda.")
 

@@ -1,7 +1,7 @@
-from src.config.connections import get_mongo_db, get_redis_client
+from src.config.connections import get_mongo_db, get_redis
 
 db = get_mongo_db()
-redis_client = get_redis_client()
+redis_client = get_redis()
 
 events_collection = db["events"]
 
@@ -18,6 +18,15 @@ def handle_station_created(event):
     redis_client.geoadd(
         "stations:geo",
         (lng, lat, station_id)
+    )
+
+    redis_client.hset(
+        f"station:{station_id}:info",
+        mapping={
+            "name":   event.get("name", station_id),
+            "brand":  event.get("brand", ""),
+            "region": event.get("location", {}).get("region_code", ""),
+        }
     )
 
     print(f"GEOADD station {station_id}")
